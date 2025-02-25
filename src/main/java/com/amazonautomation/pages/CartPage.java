@@ -55,12 +55,12 @@ public class CartPage {
         // Compare expected products with cart items
         for (String expectedProduct : expectedProducts) {
             if (!cartProducts.contains(expectedProduct)) {
-                System.out.println("❌ Missing product in cart: " + expectedProduct);
+                System.out.println("Missing product in cart: " + expectedProduct);
                 return false;
             }
         }
 
-        System.out.println("✅ All products successfully added to cart!");
+        System.out.println("All products successfully added to cart!");
         return true;
     }
 }

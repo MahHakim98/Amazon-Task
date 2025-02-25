@@ -28,25 +28,26 @@ public class AmazonTest extends BaseTest {
         loginPage.clickContinue();
         loginPage.enterPassword("010164Aa");  // Replace with test password
         loginPage.clickLogin();
-        // ✅ Login process is now clean & modular
 
+        // Home page handling
         homePage.pressMenu();
         homePage.openSeeAll();
         homePage.openCategory();
         homePage.selectVideogames();
 
+
+        // Applying filtering and sorting
         videoGamesPage.applyFreeShippingFilter();
         videoGamesPage.applyNewConditionFilter();
         videoGamesPage.sortByHighToLow();
-
         videoGamePrices.addAllProductsUnderPrice(15000);
 
-        /// /// search make sure its added
-
+        // Cart opening and asserting products added
         cartPage.openCart();
         boolean allItemsPresent = cartPage.verifyCartItems(addedProductNames);
         Assert.assertTrue(allItemsPresent, "Not all products were found in the cart!");
 
+        // Proceeding the request and filling data
         proceedToBuy.pressProceed();
         proceedToBuy.pressAddress();
         proceedToBuy.FillData();

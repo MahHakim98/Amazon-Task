@@ -55,7 +55,7 @@ public class VideoGamePrices {
                         if (!addToCartBtns.isEmpty()) {
                             WebElement addToCartBtn = addToCartBtns.get(0);
                             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartBtn);
-                            System.out.println("✅ Added product (Price: " + price + ") to cart.");
+                            System.out.println("Added product (Price: " + price + ") to cart.");
 
                             // **Short wait after adding to cart** (ensures page state updates)
                             Thread.sleep(2000);
@@ -63,16 +63,16 @@ public class VideoGamePrices {
                             // **Re-locate all products to avoid stale elements**
                             products = driver.findElements(productContainers);
                         } else {
-                            System.out.println("❌ No 'Add to Cart' button for product (Price: " + price + ").");
+                            System.out.println("No 'Add to Cart' button for product (Price: " + price + ").");
                         }
                     }
                 } catch (StaleElementReferenceException e) {
-                    System.out.println("⚠ Stale element detected. Refreshing...");
+                    System.out.println("Stale element detected. Refreshing...");
                     driver.navigate().refresh();  // Refresh page to get fresh elements
                     wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(productContainers));
                     break; // Restart loop after refresh
                 } catch (NoSuchElementException e) {
-                    System.out.println("⚠ Skipping product due to missing price/button.");
+                    System.out.println("Skipping product due to missing price/button.");
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -80,18 +80,18 @@ public class VideoGamePrices {
 
             // Stop searching if we found and added products
             if (productAdded) {
-                System.out.println("✅ All products under " + maxPrice + " added to cart. Stopping...");
+                System.out.println("All products under " + maxPrice + " added to cart. Stopping...");
                 break;
             }
 
             // If no products under 15K were found, move to the next page
             List<WebElement> nextPage = driver.findElements(nextPageButton);
             if (!foundProductOnPage && !nextPage.isEmpty()) {
-                System.out.println("➡ Moving to next page...");
+                System.out.println("Moving to next page...");
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextPage.get(0));
                 wait.until(ExpectedConditions.presenceOfElementLocated(productContainers));
             } else {
-                System.out.println("⛔ No more pages or products under " + maxPrice + " found.");
+                System.out.println("No more pages or products under " + maxPrice + " found.");
                 break;
             }
         }
