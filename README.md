@@ -68,6 +68,7 @@ src
 git clone https://github.com/MahHakim98/amazon-task.git
 cd amazon-task
 
+---
 
 ### **3️⃣ Install Dependencies
 mvn clean install
