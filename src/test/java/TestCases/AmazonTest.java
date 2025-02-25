@@ -4,9 +4,9 @@ import Base.BaseTest;
 import com.amazonautomation.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class AmazonTest extends BaseTest {
     private List<String> addedProductNames = new ArrayList<>();
